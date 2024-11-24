@@ -26,7 +26,7 @@ jobs:
 
       # 3. Release에 패키지 업로드
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v2
+        uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./package/ESP32-Git-OtaUpdate_Library.zip
