@@ -1,0 +1,29 @@
+name: Publish ESP32 Library
+
+on:
+  push:
+    tags:
+      - "v*"  # 태그 기반으로 배포
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 저장소 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 펌웨어 압축 (선택 사항)
+      #- name: Compress firmware
+      #  run: zip -r firmware.zip firmware/
+
+      # 라이브러리와 펌웨어 업로드
+      - name: Upload to GitHub Packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: ESP32LibraryAndFirmware
+          path: |
+            src/
+            library.properties
+        #    firmware.zip
