@@ -2,7 +2,10 @@ name: Release Arduino Library
 
 on:
   release:
-    types: [published]  # Release가 공개되었을 때 실행
+    types: [published]
+
+permissions:
+  contents: write  # GITHUB_TOKEN 권한 설정
 
 jobs:
   deploy:
@@ -23,9 +26,9 @@ jobs:
 
       # 3. Release에 패키지 업로드
       - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v2
         with:
-          upload_url: ${{ github.event.release.upload_url }}  # 현재 Release의 업로드 URL
+          upload_url: ${{ github.event.release.upload_url }}
           asset_path: ./package/ESP32-Git-OtaUpdate_Library.zip
           asset_name: ESP32-Git-OtaUpdate_Library.zip
           asset_content_type: application/zip
